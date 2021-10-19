@@ -71,6 +71,8 @@ def initialize_step(edition, platform, ver_mode, is_downstream=False, install_de
     if install_deps:
         common_cmds.extend([
             './bin/grabpl gen-version {}'.format(args),
+            'pwd',
+            'ls -a dist',
             'yarn install --immutable',
         ])
     if edition in ('enterprise', 'enterprise2'):
@@ -647,6 +649,8 @@ def copy_packages_for_docker_step():
             'end-to-end-tests-server',
         ],
         'commands': [
+            'pwd',
+            'ls dist',
             'ls dist/*.tar.gz*',
             'cp dist/*.tar.gz* packaging/docker/',
         ],
